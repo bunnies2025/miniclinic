@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>數據統計 - MiniClinic</title>
+    <style>
+        body { font-family: "Microsoft JhengHei", sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { color: #0F2443; border-bottom: 3px solid #14B8A6; padding-bottom: 10px; }
+        nav { background: #0F2443; padding: 12px; border-radius: 8px; margin-bottom: 20px; }
+        nav a { color: white; margin-right: 20px; text-decoration: none; }
+        nav a:hover { color: #5EEAD4; }
+        .field { margin: 16px 0; padding: 10px 0; border-bottom: 1px dashed #E2E8F0; }
+        label { display: block; font-weight: bold; color: #0F2443; margin-bottom: 8px; }
+        .stat-number { font-size: 24px; font-weight: bold; color: #14B8A6; margin-left: 10px; }
+    </style>
+</head>
+<body>
+
+   <nav>
+        <a th:href="@{/}">首頁</a>
+        <a th:href="@{/doctors}">醫師清單</a>
+        <a th:href="@{/appointment/new}">線上掛號</a>
+        <a th:href="@{/patients}">病歷資料</a>
+        <a th:href="@{/appointments}">掛號紀錄</a>  
+        <a th:href="@{/stats}">統計資訊</a>
+        <a th:href="@{/login}">醫師登入</a>  
+    </nav>
+
+    <h1>診所營運數據統計</h1>
+
+    <div class="field">
+        <label>醫師總數</label>
+        <div><span class="stat-number" th:text="${doctorCount}">0</span> 位</div>
+    </div>
+
+    <div class="field">
+        <label>病患總數</label>
+        <div><span class="stat-number" th:text="${patientCount}">0</span> 人</div>
+    </div>
+
+    <div class="field">
+        <label>掛號總數</label>
+        <div><span class="stat-number" th:text="${appointmentCount}">0</span> 筆</div>
+    </div>
+
+    <h1>各科別掛號統計</h1>
+
+    <div class="field">
+        <label>家醫科</label>
+        <div><span class="stat-number" th:text="${homeCount}">0</span> 人</div>
+    </div>
+
+    <div class="field">
+        <label>內科</label>
+        <div><span class="stat-number" th:text="${internalCount}">0</span> 人</div>
+    </div>
+
+    <div class="field">
+        <label>復健科</label>
+        <div><span class="stat-number" th:text="${rehabCount}">0</span> 人</div>
+    </div>
+
+    <div class="field">
+        <label>小兒科</label>
+        <div><span class="stat-number" th:text="${pedsCount}">0</span> 人</div>
+    </div>
+
+    <div class="field">
+        <label>身心科</label>
+        <div><span class="stat-number" th:text="${psychCount}">0</span> 人</div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>病患清單 - MiniClinic</title>
+    <style>
+        body { font-family: "Microsoft JhengHei", sans-serif; max-width: 960px; margin: 40px auto; padding: 0 20px; }
+        h1 { color: #0f2443; border-bottom: 3px solid #14B8A6; padding-bottom: 8px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #E2E8F0; }
+        th { background: #0f2443; color: white; }
+        tr:hover { background: #F8FAFC; }
+    nav { background: #0F2443; padding: 12px; border-radius: 4px; margin-bottom: 20px; }
+    nav a { color: white; margin-right: 20px; text-decoration: none; font-weight: bold; }
+    nav a:hover { color: #5EEAD4; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a th:href="@{/}">首頁</a>
+        <a th:href="@{/doctors}">醫師清單</a>
+        <a th:href="@{/appointment/new}">線上掛號</a>
+        <a th:href="@{/patients}">病歷資料</a>
+        <a th:href="@{/appointments}">掛號紀錄</a>  
+        <a th:href="@{/stats}">統計資訊</a>
+        <a th:href="@{/login}">醫師登入</a>  
+    </nav>
+
+    <h1>病患清單</h1>
+    <p style="color: #64748B; font-size: 14px; margin-top: -8px;" th:unless="${patients.isEmpty()}">
+    共 <span th:text="${patients.size()}">0</span> 位病患
+    </p>
+
+    <p th:if="${patients.isEmpty()}">目前沒有病患資料。</p>
+
+    <table th:unless="${patients.isEmpty()}">
+        <thead>
+            <tr>
+                <th>病歷號</th>
+                <th>姓名</th>
+                <th>性別</th>
+                <th>電話</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="patient : ${patients}">
+                <td th:text="${patient.chartNo}">P001</td>
+                <td th:text="${patient.name}">測試名字</td>
+                <td th:text="${patient.gender}">男</td>
+                <td th:text="${patient.phone}">0900-000-000</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
