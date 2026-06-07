@@ -94,6 +94,7 @@
                 <th>病患</th>
                 <th>病歷號</th>
                 <th>狀態</th>
+                <th>操作</th>
             </tr>
         </thead>
         <tbody>
@@ -103,6 +104,15 @@
                 <td th:text="${appt.patient.chartNo}">TEST00001</td>
                 <td>
                     <span th:text="${appt.status}" th:class="${'status-' + appt.status}">BOOKED</span>
+                </td>
+                <td>
+                    <form th:if="${appt.status == 'BOOKED'}" th:action="@{/api/appointments/{id}/cancel(id=${appt.id})}"
+                        method="post" style="margin: 0;">
+                        <button type="submit"
+                            style="background: #EF4444; color: white; padding: 4px 8px; border: none; border-radius: 4px; cursor: pointer;">
+                            取消
+                        </button>
+                    </form>
                 </td>
             </tr>
         </tbody>
