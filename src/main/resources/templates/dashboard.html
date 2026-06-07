@@ -106,7 +106,7 @@
                     <span th:text="${appt.status}" th:class="${'status-' + appt.status}">BOOKED</span>
                 </td>
                 <td>
-                    <form th:if="${appt.status == 'BOOKED'}" th:action="@{/api/appointments/{id}/cancel(id=${appt.id})}"
+                    <form th:if="${appt.status == 'BOOKED'}" th:action="@{/api/appointments/{id}/cancel(id=${appt.apptId})}"
                         method="post" style="margin: 0;">
                         <button type="submit"
                             style="background: #EF4444; color: white; padding: 4px 8px; border: none; border-radius: 4px; cursor: pointer;">
