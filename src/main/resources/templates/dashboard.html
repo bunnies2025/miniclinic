@@ -106,11 +106,17 @@
                     <span th:text="${appt.status}" th:class="${'status-' + appt.status}">BOOKED</span>
                 </td>
                 <td>
-                    <form th:if="${appt.status == 'BOOKED'}" th:action="@{/api/appointments/{id}/cancel(id=${appt.apptId})}"
-                        method="post" style="margin: 0;">
+                    <form th:if="${appt.status == 'BOOKED'}"
+                        th:action="@{/api/appointments/{id}/cancel(id=${appt.apptId})}" method="post"
+                        style="margin: 0;">
                         <button type="submit"
                             style="background: #EF4444; color: white; padding: 4px 8px; border: none; border-radius: 4px; cursor: pointer;">
                             取消
+                        </button>
+                        <button th:if="${appt.status == 'BOOKED'}" th:data-id="${appt.apptId}"
+                            onclick="completeAppointment(this.getAttribute('data-id'))"
+                            style="background: #10B981; color: white; padding: 4px 8px; border: none; border-radius: 4px; cursor: pointer; margin-right: 5px;">
+                            看診完成
                         </button>
                     </form>
                 </td>
@@ -121,6 +127,29 @@
         <a th:href="@{/password}">修改密碼</a> ｜
         <a th:href="@{/}">← 回首頁</a>
     </p>
+    <script>
+        function completeAppointment(apptId) {
+            fetch(`/api/appointments/${apptId}/status`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ status: 'COMPLETED' })
+            })
+                .then(response => {
+                    if (response.ok) {
+
+                        location.reload();
+                    } else {
+                        alert('狀態更新失敗，請稍後再試！');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('發生錯誤，請檢查網路連線。');
+                });
+        }
+    </script>
 </body>
 
 </html>
