@@ -105,21 +105,23 @@
                 <td>
                     <span th:text="${appt.status}" th:class="${'status-' + appt.status}">BOOKED</span>
                 </td>
-                <div th:if="${appt.status == 'BOOKED'}" style="display: flex; gap: 5px;">
 
-                    <button type="button" th:data-id="${appt.apptId}"
-                        onclick="cancelAppointment(this.getAttribute('data-id'))"
-                        style="background: #EF4444; color: white; padding: 4px 8px; border: none; border-radius: 4px; cursor: pointer;">
-                        取消預約
-                    </button>
+                <td>
+                    <div th:if="${appt.status == 'BOOKED'}" style="display: flex; gap: 5px;">
 
-                    <button type="button" th:data-id="${appt.apptId}"
-                        onclick="completeAppointment(this.getAttribute('data-id'))"
-                        style="background: #10B981; color: white; padding: 4px 8px; border: none; border-radius: 4px; cursor: pointer;">
-                        看診完成
-                    </button>
+                        <button type="button" th:data-id="${appt.apptId}"
+                            onclick="cancelAppointment(this.getAttribute('data-id'))"
+                            style="background: #EF4444; color: white; padding: 4px 8px; border: none; border-radius: 4px; cursor: pointer;">
+                            取消預約
+                        </button>
 
-                </div>
+                        <button type="button" th:data-id="${appt.apptId}"
+                            onclick="completeAppointment(this.getAttribute('data-id'))"
+                            style="background: #10B981; color: white; padding: 4px 8px; border: none; border-radius: 4px; cursor: pointer;">
+                            看診完成
+                        </button>
+
+                    </div>
             </tr>
         </tbody>
     </table>
