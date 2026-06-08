@@ -12,6 +12,7 @@ import tw.edu.fju.miniclinic.model.DoctorRepository;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.domain.Sort;
 
 @Controller
 public class DoctorPageController {
@@ -26,7 +27,7 @@ public class DoctorPageController {
 
         List<Doctor> doctors;
         if (department == null || department.isBlank()) {
-            doctors = doctorRepo.findAll();
+            doctors = doctorRepo.findAll(Sort.by(Sort.Direction.ASC, "doctorId"));
         } else {
             doctors = doctorRepo.findByDepartment(department);
         }
@@ -43,7 +44,7 @@ public class DoctorPageController {
         Optional<Doctor> doctor = doctorRepo.findById(doctorId);
 
         if (doctor.isEmpty()) {
-            return "redirect:/doctors";  // 找不到就回清單頁
+            return "redirect:/doctors"; // 找不到就回清單頁
         }
 
         model.addAttribute("doctor", doctor.get());
