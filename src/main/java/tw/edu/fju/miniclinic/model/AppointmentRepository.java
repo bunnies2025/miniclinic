@@ -14,5 +14,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 
     long countByApptDateBetween(LocalDate from, LocalDate to);
 
-    List<Appointment> findByDoctorAndApptDate(Doctor doctor, LocalDate apptDate);  // 新加入
+    List<Appointment> findByDoctorAndApptDate(Doctor doctor, LocalDate apptDate); // 新加入
+
+    long countByStatus(String status);
 }
