@@ -113,7 +113,7 @@
                             style="background: #EF4444; color: white; padding: 4px 8px; border: none; border-radius: 4px; cursor: pointer;">
                             取消
                         </button>
-                        <button th:if="${appt.status == 'BOOKED'}" th:data-id="${appt.apptId}"
+                        <button type="button" th:if="${appt.status == 'BOOKED'}" th:data-id="${appt.apptId}"
                             onclick="completeAppointment(this.getAttribute('data-id'))"
                             style="background: #10B981; color: white; padding: 4px 8px; border: none; border-radius: 4px; cursor: pointer; margin-right: 5px;">
                             看診完成

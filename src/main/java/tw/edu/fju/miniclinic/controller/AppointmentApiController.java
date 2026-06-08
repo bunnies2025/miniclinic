@@ -54,7 +54,7 @@ public class AppointmentApiController {
         return Map.of("count", appointmentRepo.count());
     }
 
-    @PutMapping("/api/appointments/{apptId}/status")
+    @PutMapping("/{apptId}/status")
     public ResponseEntity<Appointment> updateStatus(
             @PathVariable Long apptId,
             @RequestBody Map<String, String> payload,
@@ -78,20 +78,5 @@ public class AppointmentApiController {
 
         appt.setStatus(newStatus);
         return ResponseEntity.ok(appointmentRepo.save(appt));
-    }
-
-    @PutMapping("/{id}/status")
-    public ResponseEntity<?> cancelAppointment(@PathVariable Long id) {
-        
-        Appointment appt = appointmentRepo.findById(id).orElse(null);
-        
-        if (appt == null) {
-            return ResponseEntity.notFound().build();
-        }
-        
-        appt.setStatus("CANCELLED");
-        appointmentRepo.save(appt);
-        
-        return ResponseEntity.ok().build();
     }
 }
