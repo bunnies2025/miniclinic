@@ -140,7 +140,6 @@
             })
                 .then(response => {
                     if (response.ok) {
-
                         location.reload();
                     } else {
                         alert('狀態更新失敗，請稍後再試！');
@@ -150,28 +149,29 @@
                     console.error('Error:', error);
                     alert('發生錯誤，請檢查網路連線。');
                 });
-            function completeAppointment(apptId) {
-            }
+        }
 
-            function cancelAppointment(apptId) {
-                if (!confirm("確定要取消這筆掛號預約嗎？")) return;
+        function cancelAppointment(apptId) {
+            if (!confirm("確定要取消這筆掛號預約嗎？")) return;
 
-                fetch(`/api/appointments/${apptId}/status`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ status: 'CANCELLED' })
+            fetch(`/api/appointments/${apptId}/status`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ status: 'CANCELLED' })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('取消失敗，請稍後再試！');
+                    }
                 })
-                    .then(response => {
-                        if (response.ok) {
-                            location.reload();
-                        } else {
-                            alert('取消失敗，請稍後再試！');
-                        }
-                    })
-                    .catch(error => console.error('Error:', error));
-            }
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('發生錯誤，請檢查網路連線。');
+                });
         }
     </script>
 </body>
